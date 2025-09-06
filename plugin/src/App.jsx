@@ -1,5 +1,5 @@
 // File: plugin/src/App.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Bug, X } from "lucide-react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -24,16 +24,9 @@ const BugReportSchema = Yup.object().shape({
   os: Yup.string().required("Operating System is required"),
 });
 
-const PluginApp = ({ ownerId }) => {
+// ✅ Receive the reporterId as a prop
+const PluginApp = ({ reporterId }) => {
   const [formVisible, setFormVisible] = useState(false);
-  const [reporterId, setReporterId] = useState("");
-
-  useEffect(() => {
-    const scriptTag = document.getElementById("bughead-plugin-script");
-    if (scriptTag) {
-      setReporterId(scriptTag.getAttribute("data-user-id"));
-    }
-  }, []);
 
   const bugReportForm = useFormik({
     initialValues: {
@@ -47,6 +40,7 @@ const PluginApp = ({ ownerId }) => {
     },
     validationSchema: BugReportSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      // ✅ Use the reporterId prop directly
       if (!reporterId) {
         toast.error("Plugin misconfigured: Missing user ID.");
         setSubmitting(false);
@@ -59,7 +53,7 @@ const PluginApp = ({ ownerId }) => {
         await axios.post("http://localhost:5000/api/bugs/plugin-report", {
           ...values,
           title: bugTitle,
-          reporterId: reporterId,
+          reporterId: reporterId, // Pass the reporterId
         });
 
         toast.success("Bug report submitted successfully! ✅");
@@ -227,6 +221,7 @@ const PluginApp = ({ ownerId }) => {
                   <option value="Linux">Linux</option>
                   <option value="Android">Android</option>
                   <option value="iOS">iOS</option>
+                  <option value="Other">Other</option>
                 </select>
                 {bugReportForm.errors.os && bugReportForm.touched.os && (
                   <p className="text-xs text-red-500 mt-1">

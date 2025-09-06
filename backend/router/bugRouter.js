@@ -10,6 +10,30 @@ dotenv.config();
 
 const router = express.Router();
 
+// GET: Fetch bugs for a specific website
+router.get("/by-website/:websiteId", verifyToken, async (req, res) => {
+    try {
+        const { websiteId } = req.params;
+        const userId = req.userId;
+
+        // Verify the user owns this website
+        const website = await Website.findById(websiteId);
+        if (!website || website.userId.toString() !== userId) {
+            return res.status(403).json({ message: "Access denied. You do not have permission to view bugs for this website." });
+        }
+
+        const websiteBugs = await Bug.find({ website: websiteId }).populate('reporter', 'name email').lean();
+        res.status(200).json(websiteBugs);
+    } catch (err) {
+        console.error("Error fetching bugs for website:", err.message);
+        res.status(500).json({
+            message: "Failed to fetch bugs for the specified website.",
+            error: err.message,
+        });
+    }
+});
+
+
 // POST: Report a bug from the main dashboard (requires JWT)
 router.post("/report-bug", verifyToken, async (req, res) => {
     const { websiteUrl, repoLink, title, body, reporterName } = req.body;
@@ -104,7 +128,7 @@ router.get("/all-bugs", verifyToken, async (req, res) => {
 
 // POST: Public endpoint for plugin to submit bugs (no JWT required)
 router.post("/plugin-report", async (req, res) => {
-    const { websiteUrl, repoLink, title, body, reporterId } = req.body;
+    const { websiteId, title, body } = req.body;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
     if (!GITHUB_TOKEN) {
@@ -112,14 +136,9 @@ router.post("/plugin-report", async (req, res) => {
     }
 
     try {
-        let website = await Website.findOne({ repoLink: repoLink });
+        const website = await Website.findById(websiteId);
         if (!website) {
-            website = new Website({
-                userId: reporterId, // Use the user ID from the plugin form
-                websiteUrl: websiteUrl,
-                repoLink: repoLink,
-            });
-            await website.save();
+            return res.status(404).json({ message: "Website not found." });
         }
         
         const repoUrlParts = website.repoLink.split('/');
@@ -144,7 +163,7 @@ router.post("/plugin-report", async (req, res) => {
         const newBug = new Bug({
             githubIssueId: response.data.number,
             title: title,
-            reporter: reporterId,
+            reporter: website.userId,
             website: website._id,
             githubUrl: response.data.html_url,
             status: 'open',

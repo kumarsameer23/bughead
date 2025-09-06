@@ -43,17 +43,6 @@ const AdminDashboard = () => {
               </p>
             </div>
           </NextLink>
-
-          {/* ✅ Modified Card for Adding Websites */}
-          <NextLink href="/admin/add-website" passHref>
-            <div className="flex flex-col items-center justify-center p-8 bg-neutral-900 rounded-lg shadow-2xl border border-neutral-800 hover:bg-neutral-800 transition-colors cursor-pointer">
-              <Code size={64} className="text-emerald-500 mb-4" />
-              <h2 className="text-xl font-semibold text-white mb-2">Add New Website</h2>
-              <p className="text-sm text-neutral-400 text-center">
-                Connect a new website to its GitHub repository.
-              </p>
-            </div>
-          </NextLink>
           
           {/* Card for Viewing Bugs */}
           <NextLink href="/dashboard/bugs" passHref>
