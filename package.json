@@ -9,15 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.2",
+    "axios": "^1.11.0",
+    "formik": "^2.4.6",
+    "framer-motion": "^12.23.12",
+    "ldrs": "^1.1.7",
+    "lucide-react": "^0.540.0",
+    "next": "15.4.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.5"
+    "react-hot-toast": "^2.6.0",
+    "yup": "^1.7.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4"
   }
 }
