@@ -11,6 +11,13 @@ import { Bug, Link as LinkIcon, Code, Copy, ExternalLink, Globe, Trash2, Edit, X
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+// Card animation variants
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
+  hover: { scale: 1.05, transition: { duration: 0.3 } },
+};
+
 const WebsiteManagementPage = ({ params }) => {
     const { websiteId } = params;
     const router = useRouter();
