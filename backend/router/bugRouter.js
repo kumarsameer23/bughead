@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import verifyToken from "../middlewares/authMiddleware.js";
 import Bug from "../models/BugModel.js";
 import Website from "../models/WebsiteModel.js";
+import User from "../models/UserModel.js";
 
 dotenv.config();
 
@@ -16,7 +17,6 @@ router.get("/by-website/:websiteId", verifyToken, async (req, res) => {
         const { websiteId } = req.params;
         const userId = req.userId;
 
-        // Verify the user owns this website
         const website = await Website.findById(websiteId);
         if (!website || website.userId.toString() !== userId) {
             return res.status(403).json({ message: "Access denied. You do not have permission to view bugs for this website." });
@@ -56,7 +56,7 @@ router.post("/report-bug", verifyToken, async (req, res) => {
         }
 
         const repoUrlParts = website.repoLink.split('/');
-        const repoOwner = repoUrlParts[repoUrlParts.length - 2];
+        const repoOwner = repoUrlParts[repoUrlUrl.length - 2];
         const repoName = repoUrlParts[repoUrlParts.length - 1].replace('.git', '');
 
         const response = await axios.post(
@@ -128,7 +128,7 @@ router.get("/all-bugs", verifyToken, async (req, res) => {
 
 // POST: Public endpoint for plugin to submit bugs (no JWT required)
 router.post("/plugin-report", async (req, res) => {
-    const { websiteId, title, body } = req.body;
+    const { websiteId, title, body, category, browser, os, reporterId } = req.body;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
     if (!GITHUB_TOKEN) {
@@ -141,15 +141,20 @@ router.post("/plugin-report", async (req, res) => {
             return res.status(404).json({ message: "Website not found." });
         }
         
+        const user = await User.findById(reporterId);
+        const reporterName = user ? user.name : "Plugin User";
+        const reporterEmail = user ? user.email : "N/A";
+
         const repoUrlParts = website.repoLink.split('/');
         const repoOwner = repoUrlParts[repoUrlParts.length - 2];
         const repoName = repoUrlParts[repoUrlParts.length - 1].replace('.git', '');
 
+        const bugTitle = `[${category} Bug] on ${browser} (${os}): ${title}`;
         const response = await axios.post(
             `https://api.github.com/repos/${repoOwner}/${repoName}/issues`,
             {
-                title: title,
-                body: `**Bug Report by:** Plugin User\n\n**Description:**\n${body}`,
+                title: bugTitle,
+                body: `**Bug Report by:** ${reporterName} (${reporterEmail})\n\n**Description:**\n${body}`,
             },
             {
                 headers: {
@@ -162,9 +167,10 @@ router.post("/plugin-report", async (req, res) => {
 
         const newBug = new Bug({
             githubIssueId: response.data.number,
-            title: title,
-            reporter: website.userId,
+            title: bugTitle,
+            reporter: reporterId,
             website: website._id,
+            description: body,
             githubUrl: response.data.html_url,
             status: 'open',
         });

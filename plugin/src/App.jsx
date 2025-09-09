@@ -7,12 +7,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const BugReportSchema = Yup.object().shape({
-  websiteUrl: Yup.string()
-    .url("Invalid URL")
-    .required("Website URL is required"),
-  repoLink: Yup.string()
-    .url("Invalid URL")
-    .required("Repository Link is required"),
   title: Yup.string()
     .min(5, "Title is too short")
     .required("Title is required"),
@@ -24,14 +18,11 @@ const BugReportSchema = Yup.object().shape({
   os: Yup.string().required("Operating System is required"),
 });
 
-// ✅ Receive the reporterId as a prop
-const PluginApp = ({ reporterId }) => {
+const PluginApp = ({ userId, websiteId }) => {
   const [formVisible, setFormVisible] = useState(false);
 
   const bugReportForm = useFormik({
     initialValues: {
-      websiteUrl: "",
-      repoLink: "",
       title: "",
       description: "",
       category: "UI",
@@ -40,9 +31,8 @@ const PluginApp = ({ reporterId }) => {
     },
     validationSchema: BugReportSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-      // ✅ Use the reporterId prop directly
-      if (!reporterId) {
-        toast.error("Plugin misconfigured: Missing user ID.");
+      if (!userId || !websiteId) {
+        toast.error("Plugin misconfigured: Missing user or website ID.");
         setSubmitting(false);
         return;
       }
@@ -53,7 +43,9 @@ const PluginApp = ({ reporterId }) => {
         await axios.post("http://localhost:5000/api/bugs/plugin-report", {
           ...values,
           title: bugTitle,
-          reporterId: reporterId, // Pass the reporterId
+          body: values.description, // ✅ Set the `body` field with the description
+          websiteId: websiteId,
+          reporterId: userId,
         });
 
         toast.success("Bug report submitted successfully! ✅");
@@ -94,42 +86,6 @@ const PluginApp = ({ reporterId }) => {
             </button>
             <h3>Report a Bug</h3>
             <form onSubmit={bugReportForm.handleSubmit}>
-              <div className="form-field-container">
-                <label htmlFor="websiteUrl">Website URL</label>
-                <input
-                  type="url"
-                  id="websiteUrl"
-                  name="websiteUrl"
-                  value={bugReportForm.values.websiteUrl}
-                  onChange={bugReportForm.handleChange}
-                  onBlur={bugReportForm.handleBlur}
-                  required
-                />
-                {bugReportForm.errors.websiteUrl &&
-                  bugReportForm.touched.websiteUrl && (
-                    <p className="text-xs text-red-500 mt-1">
-                      {bugReportForm.errors.websiteUrl}
-                    </p>
-                  )}
-              </div>
-              <div className="form-field-container">
-                <label htmlFor="repoLink">GitHub Repo Link</label>
-                <input
-                  type="url"
-                  id="repoLink"
-                  name="repoLink"
-                  value={bugReportForm.values.repoLink}
-                  onChange={bugReportForm.handleChange}
-                  onBlur={bugReportForm.handleBlur}
-                  required
-                />
-                {bugReportForm.errors.repoLink &&
-                  bugReportForm.touched.repoLink && (
-                    <p className="text-xs text-red-500 mt-1">
-                      {bugReportForm.errors.repoLink}
-                    </p>
-                  )}
-              </div>
               <div className="form-field-container">
                 <label htmlFor="title">Issue Title</label>
                 <input
@@ -225,7 +181,7 @@ const PluginApp = ({ reporterId }) => {
                 </select>
                 {bugReportForm.errors.os && bugReportForm.touched.os && (
                   <p className="text-xs text-red-500 mt-1">
-                    {bugReportForm.errors.os}
+                      {bugReportForm.errors.os}
                   </p>
                 )}
               </div>

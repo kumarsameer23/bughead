@@ -3,17 +3,21 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'classic',
+    }),
+  ],
+  server: {
+    hmr: false,
+  },
   build: {
-    // Specify the output directory and file name
     outDir: 'dist',
-    assetsDir: '',
     rollupOptions: {
       output: {
-        // This ensures a single JS file without a hash
-        entryFileNames: 'bughead-plugin.js',
-        // And no CSS file
-        assetFileNames: 'bughead-plugin.css',
+        entryFileNames: `[name].js`,
+        chunkFileNames: `[name].js`,
+        assetFileNames: `[name].[ext]`,
       },
     },
   },

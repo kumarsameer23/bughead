@@ -23,6 +23,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Bughead API");
 });
 
+app.use(express.static("static"));
+
 // Connect to MongoDB
 connectDB();
 

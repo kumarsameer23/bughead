@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import Navbar from "../../../components/Navbar";
-import { Bug, LayoutDashboard, Edit, Eye, EyeOff, X, ExternalLink, Link as LinkIcon, Code, Copy, Trash2, Globe } from "lucide-react";
+import { Bug, LayoutDashboard, Edit, Eye, EyeOff, X, ExternalLink, Link as LinkIcon, Copy, Trash2, Globe } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import { DotWave } from "ldrs/react";
 import { useFormik } from "formik";
@@ -296,7 +296,7 @@ const UserDashboard = () => {
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <Link href={`/user/manage-websites/${website._id}`} className="p-2 rounded-full text-neutral-400 hover:bg-neutral-600 transition-colors" aria-label="Manage Website">
+                                                <Link href={`/user/manage-website-details?id=${website._id}`} className="p-2 rounded-full text-neutral-400 hover:bg-neutral-600 transition-colors" aria-label="Manage Website">
                                                     <Edit size={20} />
                                                 </Link>
                                                 <button onClick={() => openDeleteModal(website._id)} className="p-2 rounded-full text-red-400 hover:bg-neutral-600 transition-colors" aria-label="Delete Website">
