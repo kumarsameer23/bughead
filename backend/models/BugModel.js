@@ -9,20 +9,24 @@ const BugSchema = new mongoose.Schema({
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Reference to the User model
+        ref: 'User',
     },
     title: {
         type: String,
         required: true
     },
+    description: { // ✅ New field for storing the description
+        type: String,
+        required: true
+    },
     reporter: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // This is the key: it links the bug to a user in the 'User' collection
+        ref: 'User',
         required: true
     },
     website: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Website', // Link to the WebsiteModel
+        ref: 'Website',
         required: true
     },
     githubUrl: {

@@ -38,21 +38,23 @@ const PluginApp = ({ userId, websiteId }) => {
       }
 
       try {
+        toast.loading("Summarizing with AI & submitting...", { id: "submit-toast" });
+
         const bugTitle = `[${values.category} Bug] on ${values.browser} (${values.os}): ${values.title}`;
 
         await axios.post("http://localhost:5000/api/bugs/plugin-report", {
           ...values,
           title: bugTitle,
-          body: values.description, // ✅ Set the `body` field with the description
-          websiteId: websiteId,
+          body: values.description,
+          websiteId,
           reporterId: userId,
         });
 
-        toast.success("Bug report submitted successfully! ✅");
+        toast.success("Bug report submitted successfully! ✅", { id: "submit-toast" });
         setFormVisible(false);
         resetForm();
       } catch (error) {
-        toast.error("Failed to submit bug report. ❌");
+        toast.error("Failed to submit bug report. ❌", { id: "submit-toast" });
         console.error("Error submitting bug report:", error);
       } finally {
         setSubmitting(false);
@@ -177,11 +179,10 @@ const PluginApp = ({ userId, websiteId }) => {
                   <option value="Linux">Linux</option>
                   <option value="Android">Android</option>
                   <option value="iOS">iOS</option>
-                  <option value="Other">Other</option>
                 </select>
                 {bugReportForm.errors.os && bugReportForm.touched.os && (
                   <p className="text-xs text-red-500 mt-1">
-                      {bugReportForm.errors.os}
+                    {bugReportForm.errors.os}
                   </p>
                 )}
               </div>

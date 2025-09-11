@@ -169,3 +169,26 @@ router.delete("/:id", verifyToken, async (req, res) => {
 });
 
 export default router;
+
+// Set SendGrid API Key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// Main email sending endpoint
+app.post('/send-email', async (req, res) => {
+  const { subject, body } = req.body;
+
+  const msg = {
+    to: 'sameerkumar10122004@gmail.com', // Your recipient email address
+    from: process.env.SENDER_EMAIL, // Must be a verified sender in SendGrid
+    subject: subject || 'No Subject',
+    text: body || 'No Message',
+  };
+
+  try {
+    await sgMail.send(msg);
+    res.status(200).json({ message: 'Email sent successfully via SendGrid!' });
+  } catch (error) {
+    console.error('SendGrid email sending error:', error);
+    res.status(500).json({ message: 'Failed to send email.' });
+  }
+});

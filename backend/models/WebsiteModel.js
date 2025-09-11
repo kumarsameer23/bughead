@@ -1,3 +1,4 @@
+// File: backend/models/WebsiteModel.js
 import mongoose from "mongoose";
 
 const websiteSchema = new mongoose.Schema(
