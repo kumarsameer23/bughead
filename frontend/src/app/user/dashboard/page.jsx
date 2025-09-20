@@ -1,4 +1,3 @@
-// File: frontend/src/app/user/dashboard/page.jsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -133,7 +132,7 @@ const UserDashboard = () => {
     
     if (loading || !isAuthReady) {
         return (
-            <div className="flex justify-center items-center min-h-screen bg-neutral-950">
+            <div className="flex justify-center items-center min-h-screen bg-black relative overflow-hidden">
                 <DotWave size="47" speed="1" color="#2563EB" />
             </div>
         );
@@ -141,7 +140,7 @@ const UserDashboard = () => {
 
     if (!user) {
         return (
-            <div className="min-h-screen flex flex-col justify-center items-center p-6 bg-neutral-950 text-neutral-200 font-sans">
+            <div className="min-h-screen flex flex-col justify-center items-center p-6 bg-black text-neutral-200 font-sans relative overflow-hidden">
                 <Navbar />
                 <h1 className="text-2xl font-bold">User Not Found</h1>
             </div>
@@ -149,24 +148,44 @@ const UserDashboard = () => {
     }
     
     return (
-        <div className="min-h-screen p-6 bg-neutral-950 text-neutral-200 font-sans relative">
+        <div className="min-h-screen p-6 bg-black text-neutral-200 font-sans relative overflow-hidden">
             <Toaster position="top-center" reverseOrder={false} />
             <Navbar />
-            <div className="container mx-auto mt-20">
-                <div className="flex items-center gap-4 mb-8">
-                    <LayoutDashboard size={48} className="text-blue-500" />
-                    <h1 className="text-3xl font-bold text-white">
-                        Welcome, {user.name}!
-                    </h1>
-                </div>
+            {/* Animated background elements */}
+            <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.3 }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+                className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"
+            ></motion.div>
+            <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.3 }}
+                transition={{ duration: 2, ease: "easeInOut", delay: 1, repeat: Infinity, repeatType: "reverse" }}
+                className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-emerald-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"
+            ></motion.div>
+
+            <div className="container mx-auto mt-20 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                    <div className="flex items-center gap-4 mb-8">
+                        <LayoutDashboard size={48} className="text-blue-500" />
+                        <h1 className="text-3xl font-bold text-white">
+                            Welcome, {user.name}!
+                        </h1>
+                    </div>
+                </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* User Profile Card */}
                     <motion.div 
-                        className="bg-neutral-900 rounded-lg shadow-2xl border border-neutral-800 p-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        className="backdrop-blur-md bg-neutral-900/80 rounded-xl shadow-2xl border border-neutral-800 p-8"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
                     >
                         <div className="flex items-center justify-between mb-6">
                             <h2 className="text-2xl font-semibold text-white">
@@ -261,10 +280,10 @@ const UserDashboard = () => {
 
                     {/* My Websites Card */}
                     <motion.div 
-                        className="bg-neutral-900 rounded-lg shadow-2xl border border-neutral-800 p-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        className="backdrop-blur-md bg-neutral-900/80 rounded-xl shadow-2xl border border-neutral-800 p-8"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
                     >
                         <div className="flex items-center justify-between mb-6">
                             <h2 className="text-2xl font-semibold text-white">My Websites</h2>

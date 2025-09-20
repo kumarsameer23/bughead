@@ -1,4 +1,3 @@
-// File: src/app/user/manage-website-details/page.jsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -118,7 +117,7 @@ const WebsiteDetailsPage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-neutral-950">
+      <div className="flex justify-center items-center min-h-screen bg-black relative overflow-hidden">
         <DotWave size="47" speed="1" color="#2563EB" />
       </div>
     );
@@ -126,7 +125,7 @@ const WebsiteDetailsPage = () => {
 
   if (!website) {
     return (
-      <div className="min-h-screen flex flex-col justify-center items-center p-6 bg-neutral-950 text-neutral-200 font-sans">
+      <div className="min-h-screen flex flex-col justify-center items-center p-6 bg-black text-neutral-200 font-sans relative overflow-hidden">
         <Navbar />
         <h1 className="text-2xl font-bold">Website Not Found</h1>
       </div>
@@ -134,10 +133,23 @@ const WebsiteDetailsPage = () => {
   }
 
   return (
-    <div className="min-h-screen p-6 bg-neutral-950 text-neutral-200 font-sans relative">
+    <div className="min-h-screen p-6 bg-black text-neutral-200 font-sans relative overflow-hidden">
       <Toaster position="top-center" reverseOrder={false} />
       <Navbar />
-      <div className="container mx-auto mt-20">
+      {/* Animated background elements */}
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.3 }}
+        transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+        className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"
+      ></motion.div>
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.3 }}
+        transition={{ duration: 2, ease: "easeInOut", delay: 1, repeat: Infinity, repeatType: "reverse" }}
+        className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-emerald-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"
+      ></motion.div>
+      <div className="container mx-auto mt-20 relative z-10">
         <div className="flex items-center gap-4 mb-8">
           <Globe size={48} className="text-blue-500" />
           <h1 className="text-3xl font-bold text-white">
@@ -148,10 +160,10 @@ const WebsiteDetailsPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Website Details Card */}
           <motion.div
-            className="bg-neutral-900 rounded-lg shadow-2xl border border-neutral-800 p-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            className="backdrop-blur-md bg-neutral-900/80 rounded-xl shadow-2xl border border-neutral-800 p-8"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-semibold text-white">
@@ -199,10 +211,10 @@ const WebsiteDetailsPage = () => {
 
           {/* Plugin Generation Card */}
           <motion.div
-            className="bg-neutral-900 rounded-lg shadow-2xl border border-neutral-800 p-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            className="backdrop-blur-md bg-neutral-900/80 rounded-xl shadow-2xl border border-neutral-800 p-8"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-semibold text-white">
@@ -219,14 +231,19 @@ const WebsiteDetailsPage = () => {
         </div>
 
         {/* Bug Reports Section */}
-        <div className="mt-12">
+        <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+        >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-white flex items-center gap-2">
               <Bug size={24} /> Reported Bugs for This Website
             </h2>
           </div>
           {bugs.length > 0 ? (
-            <div className="bg-neutral-900 rounded-lg shadow-2xl overflow-hidden border border-neutral-800">
+            <div className="backdrop-blur-md bg-neutral-900/80 rounded-xl shadow-2xl overflow-hidden border border-neutral-800">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-neutral-700">
                   <thead className="bg-neutral-800">
@@ -285,14 +302,14 @@ const WebsiteDetailsPage = () => {
               </div>
             </div>
           ) : (
-            <div className="text-center text-neutral-400 p-8 bg-neutral-900 rounded-lg shadow-2xl border border-neutral-800">
+            <div className="text-center text-neutral-400 p-8 bg-neutral-900/80 rounded-lg shadow-2xl border border-neutral-800">
               <Bug size={64} className="mx-auto mb-4 text-neutral-600" />
               <p className="mb-4">
                 No bug reports have been submitted for this website yet.
               </p>
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
       {/* Delete Confirmation Modal */}
       {isDeleteModalVisible && (

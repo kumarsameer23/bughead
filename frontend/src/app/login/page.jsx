@@ -1,4 +1,3 @@
-// File: frontend/src/app/login/page.jsx
 "use client";
 import React, { useState } from "react";
 import { useFormik } from "formik";
@@ -10,6 +9,7 @@ import { Eye, EyeOff, Bug, UserCog } from "lucide-react";
 import Link from "next/link";
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import Navbar from "../../components/Navbar";
+import { motion } from "framer-motion";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -75,16 +75,38 @@ const LoginForm = () => {
   });
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-neutral-950 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-black relative overflow-hidden">
       <Navbar />
       <Toaster position="top-center" reverseOrder={false} toastOptions={{ duration: 3000 }} />
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-emerald-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"></div>
+      {/* Animated background elements */}
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.3 }}
+        transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+        className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"
+      ></motion.div>
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.3 }}
+        transition={{ duration: 2, ease: "easeInOut", delay: 1, repeat: Infinity, repeatType: "reverse" }}
+        className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-emerald-600 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"
+      ></motion.div>
 
-      <div className="relative z-10 max-w-md w-full backdrop-blur-md bg-neutral-900/80 border border-neutral-800 rounded-xl shadow-2xl animate-fade-in-up mt-20">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="relative z-10 max-w-md w-full backdrop-blur-md bg-neutral-900/80 border border-neutral-800 rounded-xl shadow-2xl mt-20"
+      >
         <div className="p-4 sm:p-7">
           <div className="text-center mb-6">
-            <Bug size={48} className="mx-auto mb-2 text-blue-500" />
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              <Bug size={48} className="mx-auto mb-2 text-blue-500" />
+            </motion.div>
             <h1 className="block text-2xl font-bold text-white">
               Sign In to BugHead
             </h1>
@@ -125,6 +147,7 @@ const LoginForm = () => {
                 <div>
                   <label htmlFor="email" className="block text-sm mb-2 text-white">Email address</label>
                   <input type="email" id="email" name="email" onChange={loginForm.handleChange} onBlur={loginForm.handleBlur} value={loginForm.values.email} className="py-2.5 sm:py-3 px-4 block w-full border-neutral-700 rounded-lg text-sm bg-neutral-800 text-white focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:pointer-events-none" autoComplete="email" />
+                  {loginForm.touched.email && loginForm.errors.email && (<p className="text-xs text-red-500 mt-2">{loginForm.errors.email}</p>)}
                 </div>
                 <div>
                   <label htmlFor="password" className="block text-sm mb-2 text-white">Password</label>
@@ -152,7 +175,7 @@ const LoginForm = () => {
             </form>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
