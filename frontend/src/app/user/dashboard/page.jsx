@@ -44,7 +44,7 @@ const UserDashboard = () => {
     const fetchUser = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`https://bughead.onrender.com./api/users/${storedUserId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${storedUserId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
             setUser(res.data);
             editForm.setValues({
                 name: res.data.name,
@@ -64,7 +64,7 @@ const UserDashboard = () => {
     const fetchUserWebsites = async () => {
         setWebsitesLoading(true);
         try {
-            const res = await axios.get(`https://bughead.onrender.com./api/websites/user/${storedUserId}`, {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/websites/user/${storedUserId}`, {
                 headers: { Authorization: `Bearer ${storedToken}` }
             });
             setUserWebsites(res.data);
@@ -78,7 +78,7 @@ const UserDashboard = () => {
     
     const handleDeleteWebsite = async (websiteId) => {
         try {
-            await axios.delete(`https://bughead.onrender.com./api/websites/${websiteId}`, {
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/websites/${websiteId}`, {
                 headers: { Authorization: `Bearer ${storedToken}` }
             });
             toast.success("Website deleted successfully! ✅");
@@ -115,7 +115,7 @@ const UserDashboard = () => {
         validationSchema: EditProfileSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const res = await axios.put(`https://bughead.onrender.com./api/users/${storedUserId}`, values, {
+                const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${storedUserId}`, values, {
                   headers: { Authorization: `Bearer ${storedToken}` }
                 });
                 toast.success("Profile updated successfully! ✅");

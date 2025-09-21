@@ -24,7 +24,7 @@ const AllBugs = () => {
             setLoading(true);
             try {
                 // ✅ Call the new admin-specific API endpoint
-                const res = await axios.get("https://bughead.onrender.com./api/bugs/all-bugs", {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/bugs/all-bugs`, {
                     headers: {
                         Authorization: `Bearer ${storedToken}`,
                     },

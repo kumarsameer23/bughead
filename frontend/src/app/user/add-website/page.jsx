@@ -47,7 +47,7 @@ const AddWebsite = () => {
     validationSchema: AddWebsiteSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        const res = await axios.post("https://bughead.onrender.com./api/websites", values, {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/websites`, values, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },

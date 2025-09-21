@@ -26,10 +26,10 @@ const WebsiteDetails = () => {
     const fetchData = async () => {
       try {
         const [websiteRes, bugsRes] = await Promise.all([
-          axios.get(`https://bughead.onrender.com./api/websites/${id}`, {
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/websites/${id}`, {
             headers: { Authorization: `Bearer ${storedToken}` },
           }),
-          axios.get(`https://bughead.onrender.com./api/bugs/website/${id}`, {
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/bugs/website/${id}`, {
             headers: { Authorization: `Bearer ${storedToken}` },
           }),
         ]);
