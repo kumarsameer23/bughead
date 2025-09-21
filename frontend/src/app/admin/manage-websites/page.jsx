@@ -41,7 +41,7 @@ const ManageWebsites = () => {
   const fetchWebsites = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/websites", {
+      const res = await axios.get("https://bughead.onrender.com./api/websites", {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       setWebsites(res.data);
@@ -72,7 +72,7 @@ const ManageWebsites = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         await axios.put(
-          `http://localhost:5000/api/websites/${editingWebsite._id}`,
+          `https://bughead.onrender.com./api/websites/${editingWebsite._id}`,
           values,
           {
             headers: { Authorization: `Bearer ${storedToken}` },
@@ -103,7 +103,7 @@ const ManageWebsites = () => {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/websites/${deletingWebsite._id}`,
+        `https://bughead.onrender.com./api/websites/${deletingWebsite._id}`,
         {
           headers: { Authorization: `Bearer ${storedToken}` },
         }

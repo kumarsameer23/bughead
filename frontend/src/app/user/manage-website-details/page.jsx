@@ -59,7 +59,7 @@ const WebsiteDetailsPage = () => {
     const fetchWebsiteData = async () => {
       try {
         const websiteRes = await axios.get(
-          `http://localhost:5000/api/websites/${websiteId}`,
+          `https://bughead.onrender.com./api/websites/${websiteId}`,
           {
             headers: { Authorization: `Bearer ${storedToken}` },
           }
@@ -67,7 +67,7 @@ const WebsiteDetailsPage = () => {
         setWebsite(websiteRes.data);
 
         const bugsRes = await axios.get(
-          `http://localhost:5000/api/bugs/by-website/${websiteId}`,
+          `https://bughead.onrender.com./api/bugs/by-website/${websiteId}`,
           {
             headers: { Authorization: `Bearer ${storedToken}` },
           }
@@ -102,7 +102,7 @@ const WebsiteDetailsPage = () => {
 
   const handleDeleteWebsite = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/websites/${websiteId}`, {
+      await axios.delete(`https://bughead.onrender.com./api/websites/${websiteId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       toast.success("Website deleted successfully! ✅");

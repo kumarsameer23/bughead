@@ -40,7 +40,7 @@ const SignupForm = () => {
     },
     onSubmit: async (values, { resetForm, setSubmitting }) => {
       try {
-        const res = await axios.post("http://localhost:5000/user/signup", {
+        const res = await axios.post("https://bughead.onrender.com./user/signup", {
           name: values.name,
           email: values.email,
           password: values.password,
@@ -62,7 +62,7 @@ const SignupForm = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        const res = await axios.post("http://localhost:5000/api/users/google-auth", { token: tokenResponse.access_token });
+        const res = await axios.post("https://bughead.onrender.com./api/users/google-auth", { token: tokenResponse.access_token });
         console.log("Google Sign-up success:", res.data);
         toast.success("Google sign-in successful! ✅");
         window.location.href = "/user/dashboard";

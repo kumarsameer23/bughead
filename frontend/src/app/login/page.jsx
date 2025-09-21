@@ -28,7 +28,7 @@ const LoginForm = () => {
     validationSchema: LoginSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        const res = await axios.post("http://localhost:5000/api/users/login", {
+        const res = await axios.post("https://bughead.onrender.com./api/users/login", {
           email: values.email,
           password: values.password,
         });
@@ -55,7 +55,7 @@ const LoginForm = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        const res = await axios.post("http://localhost:5000/api/users/google-auth", {
+        const res = await axios.post("https://bughead.onrender.com./api/users/google-auth", {
           token: tokenResponse.access_token,
         });
         console.log("Google login success:", res.data);

@@ -27,7 +27,7 @@ const ManageUsers = () => {
     }
 
     try {
-      const res = await axios.get("http://localhost:5000/api/users", {
+      const res = await axios.get("https://bughead.onrender.com./api/users", {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -67,7 +67,7 @@ const ManageUsers = () => {
     }
     
     try {
-      await axios.put(`http://localhost:5000/api/users/${editingUser}`, editFormData, {
+      await axios.put(`https://bughead.onrender.com./api/users/${editingUser}`, editFormData, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -90,7 +90,7 @@ const ManageUsers = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/users/${deletingUser}`, {
+      await axios.delete(`https://bughead.onrender.com./api/users/${deletingUser}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
