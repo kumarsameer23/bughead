@@ -5,26 +5,25 @@ dotenv.config();
 import connectDB from "./connection.js";
 import userRouter from "./router/userRouter.js";
 import websiteRouter from "./router/websiteRouter.js";
-import bugRouter from "./router/bugRouter.js"; 
+import bugRouter from "./router/bugRouter.js";
 import cors from "cors";
-
 
 const app = express();
 
 const corsOptions = {
-  origin: 'https://bughead-green.vercel.app', 
-  optionsSuccessStatus: 200 
+  origin: "*",
+  optionsSuccessStatus: 200,
 };
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
 app.use("/api/users", userRouter);
 app.use("/user", userRouter);
 app.use("/api/websites", websiteRouter);
-app.use("/api/bugs", bugRouter); 
+app.use("/api/bugs", bugRouter);
 app.get("/", (req, res) => {
   res.send("Welcome to the Bughead API");
 });
