@@ -8,7 +8,13 @@ import websiteRouter from "./router/websiteRouter.js";
 import bugRouter from "./router/bugRouter.js"; // ✅ Import the new router
 import cors from "cors";
 
+
 const app = express();
+
+const corsOptions = {
+  origin: 'https://bughead-green.vercel.app', // Your Vercel frontend URL
+  optionsSuccessStatus: 200 // For preflight requests
+};
 
 // Middleware
 app.use(cors());
