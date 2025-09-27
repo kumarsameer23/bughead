@@ -1,4 +1,4 @@
-13011
+13015
 64C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\.gitignore134005718372930282 0
 94C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@parcel\watcher\binding.gyp134013492851468843 0
 74C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\src\assets\react.svg134005718374717046 0
@@ -38,7 +38,7 @@
 134C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\align-vertical-distribute-center.js.map134005730143984455 0
 81C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@eslint\js\src134005728918614950 1
 104C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\vite\dist\node\chunks\dep-CA7ICgyJ.js134005728920467682 0
-58C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist134018666436451769 1
+58C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist134034237414321295 1
 116C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\corner-up-left.js.map134005730148966973 0
 83C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\semver\README.md134005728907076896 0
 82C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lodash\fp\gt.js134013479157994824 0
@@ -144,7 +144,7 @@
 89C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lodash\fp\zipObject.js134013479163154612 0
 105C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lmdb\dependencies\lz4\lib\liblz4.pc.in134013492878351987 0
 81C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\es-errors\test134005820228434179 1
-65C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\src\App.jsx134017060702840246 0
+65C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\src\App.jsx134034224448611604 0
 103C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\caniuse-lite\data\features\mathml.js134005728915171938 0
 126C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\align-vertical-justify-start.js134005730129713999 0
 98C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\type-fest\source\primitive.d.ts134013479984137514 0
@@ -262,7 +262,7 @@
 72C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@lmdb134017015999626673 1
 113C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\micromatch\node_modules\picomatch\package.json134013492846463370 0
 88C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\picocolors\types.d.ts134005728907021830 0
-77C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\.vite-temp134018653217239626 1
+77C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\.vite-temp134033727624672643 1
 114C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\file-archive.js.map134005730150046760 0
 114C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\alert-circle.js.map134005730143788876 0
 76C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\type-fest134013479983908916 1
@@ -3613,6 +3613,7 @@
 106C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\wifi-low.js134005730143428056 0
 114C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\a-arrow-down.js.map134005730143623639 0
 107C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lmdb\dependencies\lmdb-data-v1\libraries134013492853781748 1
+68C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\index.css134026465317301796 0
 110C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@babel\types\lib\converters\toExpression.js134005728910090250 0
 112C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\a-arrow-up.js.map134005730143633437 0
 115C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\a-large-small.js.map134005730143633437 0
@@ -5441,6 +5442,7 @@
 100C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\asynckit\lib\readable_parallel.js134005820228814159 0
 126C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\file-chart-column-increasing.js134005730134019363 0
 130C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\file-chart-column-increasing.js.map134005730150131849 0
+67C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\vite.svg134005718374960068 0
 98C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\eslint\lib\rules\vars-on-top.js134005728924158902 0
 115C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\file-chart-column.js134005730134029363 0
 108C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\lucide-react\dist\esm\icons\volume-off.js134005730143236049 0
@@ -12422,6 +12424,7 @@
 118C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@jridgewell\gen-mapping\dist\gen-mapping.umd.js.map134005728918300272 0
 118C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@jridgewell\gen-mapping\dist\types\gen-mapping.d.ts134005728918489695 0
 116C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@jridgewell\gen-mapping\dist\types\set-array.d.ts134005728918549711 0
+69C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\index.html134026465317291744 0
 112C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@jridgewell\gen-mapping\dist\types\types.d.ts134005728918614950 0
 104C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@humanwhocodes\retry\dist\retrier.cjs134005728905843072 0
 110C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\@humanwhocodes\module-importer\CHANGELOG.md134005728907302381 0
@@ -13008,5 +13011,6 @@
 82C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\.bin\semver.cmd134005728943191209 0
 76C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\.bin\vite134005728943191209 0
 80C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\node_modules\.bin\vite.cmd134005728943191209 0
-67C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\main.css134018666428840470 0
-66C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\main.js134018666436431760 0
+67C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\index.js134026465317301796 0
+67C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\main.css134034237407722076 0
+66C:\Users\Sameer Kumar\OneDrive\Desktop\bughead\plugin\dist\main.js134034237414311299 0
