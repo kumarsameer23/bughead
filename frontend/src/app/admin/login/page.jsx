@@ -142,7 +142,7 @@ const AdminLoginForm = () => {
 };
 
 const AdminLogin = () => {
-  const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID";
+  const GOOGLE_CLIENT_ID = "704395928968-n2q5amv4r80mh2mrvkdvo13i62jb2cr2.apps.googleusercontent.com";
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <AdminLoginForm />

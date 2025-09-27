@@ -42,7 +42,7 @@ const PluginApp = ({ userId, websiteId }) => {
 
         const bugTitle = `[${values.category} Bug] on ${values.browser} (${values.os}): ${values.title}`;
 
-        await axios.post("http://localhost:5000/api/bugs/plugin-report", {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/bugs/plugin-report`, {
           ...values,
           title: bugTitle,
           body: values.description,
