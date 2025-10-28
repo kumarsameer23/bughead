@@ -15,7 +15,7 @@ const router = express.Router();
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // ✅ Use supported model
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // GET: Fetch bugs for a specific website
 router.get("/by-website/:websiteId", verifyToken, async (req, res) => {
