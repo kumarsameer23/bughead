@@ -6,8 +6,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-console.log("Plugin API URL:", process.env.NEXT_PUBLIC_API_URL);
-
 const BugReportSchema = Yup.object().shape({
   title: Yup.string()
     .min(5, "Title is too short")
@@ -44,7 +42,7 @@ const PluginApp = ({ userId, websiteId }) => {
 
         const bugTitle = `[${values.category} Bug] on ${values.browser} (${values.os}): ${values.title}`;
 
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/bugs/plugin-report`, {
+        await axios.post("https://bughead.onrender.com/api/bugs/plugin-report", {
           ...values,
           title: bugTitle,
           body: values.description,
