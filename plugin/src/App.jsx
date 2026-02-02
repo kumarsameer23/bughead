@@ -54,7 +54,7 @@ const PluginApp = ({ userId, websiteId }) => {
         setFormVisible(false);
         resetForm();
       } catch (error) {
-        toast.error("Failed to submit bug report. ❌", { id: "submit-toast" });
+        toast.error("Failed to submit bug report. ❌", { id: "submit-toast" },error);
         console.error("Error submitting bug report:", error);
       } finally {
         setSubmitting(false);
