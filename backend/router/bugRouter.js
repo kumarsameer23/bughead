@@ -66,7 +66,6 @@ router.post("/report-bug", verifyToken, async (req, res) => {
     }
 
     const repoUrlParts = website.repoLink.split("/");
-    // ✅ fixed typo here
     const repoOwner = repoUrlParts[repoUrlParts.length - 2];
     const repoName = repoUrlParts[repoUrlParts.length - 1].replace(".git", "");
 

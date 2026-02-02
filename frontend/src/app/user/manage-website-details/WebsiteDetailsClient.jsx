@@ -76,7 +76,7 @@ const WebsiteDetailsClient = () => {
     if (!website)
       return "// Add a website to generate your personalized plugin script.";
     const backendUrl = "https://bughead.onrender.com"; // Consider using environment variables for this
-    return `<link rel="stylesheet" href="https://bughead.onrender.com/main.css" />
+    return `<link rel="stylesheet" href="https://bughead.onrender.com/index.css" />
   <script>
   window.bugHeadConfig = {
     userId: "${storedUserId}",
@@ -84,7 +84,7 @@ const WebsiteDetailsClient = () => {
     apiUrl: "${backendUrl}"
   };
 </script>
-<script type="module" src="${backendUrl}/main.js"></script>`;
+<script type="module" src="${backendUrl}/index.js"></script>`;
   };
 
   const openDeleteModal = () => {
